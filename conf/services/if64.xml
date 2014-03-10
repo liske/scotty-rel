@@ -8,22 +8,28 @@
 -->
 <service label="%1%">
     <sensor name="Scotty::Sensor::snmp">
+	<discover type="table">
+	    <index>IF-MIB::ifIndex</index>
+	    <label type="snmpget">IF-MIB::ifDescr.%index%</label>
+	    <descr type="snmpget">IF-MIB::ifAlias.%index%</descr>
+	    <max type="snmpget">IF-MIB::ifHighSpeed.%index%</max>
+	</discover>
 	<config>
 	    <dataset>
-		<oid>IF-MIB::ifHCInOctets.%2%</oid>
+		<oid>IF-MIB::ifHCInOctets.%index%</oid>
 		<label>In</label>
 		<color>green</color>
 		<unit>Bps</unit>
 		<min>0</min>
-		<max>%{IF-MIB::ifHighSpeed.%2%}%</max>
+		<max>%max%</max>
 	    </dataset>
 	    <dataset>
-		<oid>IF-MIB::ifHCOutOctets.%2%</oid>
+		<oid>IF-MIB::ifHCOutOctets.%index%</oid>
 		<label>Out</label>
 		<color>blue</color>
 		<unit>Bps</unit>
 		<min>0</min>
-		<max>%{IF-MIB::ifHighSpeed.%2%}%</max>
+		<max>%max%</max>
 	    </dataset>
 	    <status>
 		<oid>IF-MIB::ifOperStatus.%2%</oid>

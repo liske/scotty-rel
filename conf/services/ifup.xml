@@ -8,9 +8,14 @@
 -->
 <service label="%1%">
     <sensor name="Scotty::Sensor::snmp">
+	<discover type="table">
+	    <index>IF-MIB::ifIndex</index>
+	    <label type="snmpget">IF-MIB::ifDescr.%index%</label>
+	    <descr type="snmpget">IF-MIB::ifAlias.%index%</descr>
+	</discover>
 	<config>
 	    <status>
-		<oid>IF-MIB::ifOperStatus.%2%</oid>
+		<oid>IF-MIB::ifOperStatus.%index%</oid>
 		<label>Status</label>
 		<monitor eval="!= 2" state="%3%"/>
 		<monitor eval="== 2" state="%4%"/>
