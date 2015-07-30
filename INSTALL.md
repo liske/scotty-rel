@@ -7,6 +7,8 @@ The following command line binaries are required:
 The following Perl packages are required:
 * EV
 * JSON(::XS)
+* Proc::Daemon
+* Proc::PID::File
 * Mojolicious
 * SNMP
 * Statistics::Basic
