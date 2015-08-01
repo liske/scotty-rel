@@ -32,7 +32,7 @@
 		<max>%max%</max>
 	    </dataset>
 	    <status>
-		<oid>IF-MIB::ifOperStatus.%2%</oid>
+		<oid>IF-MIB::ifOperStatus.%index%</oid>
 		<label>Status</label>
 		<monitor>(%v% != 2 ? %3% : %4%)</monitor>
 	    </status>
