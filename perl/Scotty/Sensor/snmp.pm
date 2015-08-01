@@ -90,6 +90,8 @@ sub register {
 	while($oid =~ /%(\d+)(|([^%]+))?%/) {
 	    my ($i, $alt) = ($1, $3);
 	    my $val = ($i - 1 <= $#{$params} ? $params->[$i - 1] : $alt);
+	    die "Parameter #$i of '${host}_$self->{service}_".join('_', @{$params})."' is undefined!\n"
+		unless(defined($val));
 	    $oid =~ s/%$i(|[^%]+)?%/$val/;
 	    $oid = &SNMP::translateObj($oid) unless($oid =~ /^[\d.]+$/);
 	}
