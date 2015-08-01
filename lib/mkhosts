@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # scotty-rel - Scotty RELOADED Network Management Tool
 #
@@ -6,7 +6,7 @@
 #   Thomas Liske <thomas@fiasko-nw.net>
 #
 # Copyright Holder:
-#   2014        (C) IBH IT-Service GmbH [http://www.ibh.de/OSS/Scotty]
+#   2014 - 2015 (C) IBH IT-Service GmbH [http://www.ibh.de/OSS/Scotty]
 #
 # License:
 #   This program is free software; you can redistribute it and/or modify
@@ -26,12 +26,13 @@
 
 . ${1:-/etc/scotty-rel/paths.conf}
 
-function err {
+err () {
     logger -s -t scotty-rel -- "Configuration error: $@"
     exit 1
 }
 
 S2HFN=`tempfile -p s2h -s xml`
+HSTFN=`tempfile -p hst -s xml`
 if [ ! -e "$CFGDIR/views.xml" ]; then
     rm "$S2HFN"
     err views.xml not found "($CFGDIR/views.xml)"
@@ -39,4 +40,7 @@ fi
 
 xsltproc -o "$S2HFN" "$XSLDIR/views2hosts.xsl" "$CFGDIR/views.xml" || err xsltproc processing failed on $CFGDIR/views.xml
 
-perl -nMSocket -e 'while(/##([^<#]+)##/) {$h=inet_ntoa(inet_aton($1)); s/##$1##/$h/g;} print;' < "$S2HFN" > "$CFGDIR/hosts.xml.new" || err could not create views configuration
+perl -nMSocket -e 'while(/##([^<#]+)##/) {$h=inet_ntoa(inet_aton($1)); s/##$1##/$h/g;} print;' < "$S2HFN" > "$HSTFN" || err could not create views configuration
+
+mv "$HSTFN" "$CFGDIR/hosts.xml"
+rm -f "$S2HFN"
