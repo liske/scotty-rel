@@ -54,7 +54,6 @@ sub getID {
 sub getMap {
     my ($self) = @_;
 
-use Data::Dumper;
     return $self->{idmap};
 }
 
