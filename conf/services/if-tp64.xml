@@ -19,7 +19,7 @@
 		<oid>IF-MIB::ifHCInOctets.%2%</oid>
 		<label>In</label>
 		<color>green</color>
-		<unit>Bps</unit>
+		<unit>b</unit>
 		<min>0</min>
 		<max>%max%</max>
 	    </dataset>
@@ -27,7 +27,7 @@
 		<oid>IF-MIB::ifHCOutOctets.%2%</oid>
 		<label>Out</label>
 		<color>blue</color>
-		<unit>Bps</unit>
+		<unit>b</unit>
 		<min>0</min>
 		<max>%max%</max>
 	    </dataset>
