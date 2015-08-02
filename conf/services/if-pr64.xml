@@ -6,7 +6,7 @@
 	%3%	down state
 	%4%	up state
 -->
-<service label="%label%">
+<service label="%1%">
     <sensor name="Scotty::Sensor::snmp">
 	<discover type="table">
 	    <index>IF-MIB::ifIndex</index>

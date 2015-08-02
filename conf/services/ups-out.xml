@@ -1,0 +1,28 @@
+<!--
+    Service: SNMP UPS Power Counters
+    Parameters:
+	%1%	label
+	%2%	lineIndex
+-->
+<service label="%1%">
+    <sensor name="Scotty::Sensor::snmpv1">
+	<config>
+	    <dataset>
+		<oid>SNMPv2-SMI::mib-2.33.1.4.4.1.4.%2%</oid>
+		<label>Power</label>
+		<color>black</color>
+		<unit>W</unit>
+		<min>0</min>
+		<max>%max%</max>
+	    </dataset>
+	    <dataset>
+		<oid>SNMPv2-SMI::mib-2.33.1.4.4.1.5.%2%</oid>
+		<label>Load</label>
+		<color>red</color>
+		<unit>%</unit>
+		<min>0</min>
+		<max>100</max>
+	    </dataset>
+	</config>
+    </sensor>
+</service>
