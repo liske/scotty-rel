@@ -168,7 +168,8 @@ sub worker {
 
 				    if(${$_}[3] =~ /^(INTEGER)/) {
 					my $e = SNMP::mapEnum($_->[0], $_->[2]);
-					$v = ($e eq 'unknown' ? "$e($v)" : $e);
+					$v = ($e eq 'unknown' ? "$e($v)" : $e)
+					    if(defined($e));
                                     }
 				    elsif(${$_}[3] =~ /^COUNTER/) {
 					my $k = $id.${$oid}[0];
