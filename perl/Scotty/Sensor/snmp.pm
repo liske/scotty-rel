@@ -93,7 +93,12 @@ sub register {
 	    die "Parameter #$i of '${host}_$self->{service}_".join('_', @{$params})."' is undefined!\n"
 		unless(defined($val));
 	    $oid =~ s/%$i(|[^%]+)?%/$val/;
-	    $oid = &SNMP::translateObj($oid) unless($oid =~ /^[\d.]+$/);
+	    unless($oid =~ /^[\d.]+$/) {
+		my $noid = &SNMP::translateObj($oid) ;
+		die "Failed translating SNMP OID: $oid\n"
+		    unless(defined($noid));
+		$oid = $noid;
+	    }
 	}
 	push(@oids, [$oid]);
 	$href->{oids}->{$oid}++;
