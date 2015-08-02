@@ -1,0 +1,40 @@
+<!--
+    Service: SNMP Interface Counters (64bit)
+    Parameters:
+	%1%	label
+	%2%	ifIndex
+	%3%	down state
+	%4%	up state
+-->
+<service label="%label%">
+    <sensor name="Scotty::Sensor::snmp">
+	<discover type="table">
+	    <index>IF-MIB::ifIndex</index>
+	    <label type="snmpget">IF-MIB::ifDescr.%2%</label>
+	    <descr type="snmpget">IF-MIB::ifAlias.%2%</descr>
+	</discover>
+	<config>
+	    <dataset>
+		<oid>IF-MIB::ifHCInOctets.%2%</oid>
+		<label>In</label>
+		<color>green</color>
+		<unit>pps</unit>
+		<min>0</min>
+		<max></max>
+	    </dataset>
+	    <dataset>
+		<oid>IF-MIB::ifHCOutOctets.%2%</oid>
+		<label>Out</label>
+		<color>blue</color>
+		<unit>pps</unit>
+		<min>0</min>
+		<max></max>
+	    </dataset>
+	    <status>
+		<oid>IF-MIB::ifOperStatus.%2%</oid>
+		<label>Status</label>
+		<monitor>(%v% != 2 ? %3% : %4%)</monitor>
+	    </status>
+	</config>
+    </sensor>
+</service>
