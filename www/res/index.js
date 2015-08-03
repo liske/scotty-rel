@@ -269,7 +269,7 @@ function scotty_updatesvg(view, redraw) {
 			    chart.x + 2, chart.y + 10,
 			    (last > 0 ? scotty_fnum(last, services[chartid].unit[idx]) : ''),
 			    {
-				fontSize: '9px',
+				fontSize: '10px',
 				fill: services[chartid].color[idx],
 				textAnchor: 'begin',
 			    }
@@ -279,7 +279,7 @@ function scotty_updatesvg(view, redraw) {
 			    chart.x + chart.width - 2, chart.y + 10,
 			    (last > 0 ? scotty_fnum(last, services[chartid].unit[idx]) : ''),
 			    {
-				fontSize: '9px',
+				fontSize: '10px',
 				fill: services[chartid].color[idx],
 				textAnchor: 'end',
 			    }
