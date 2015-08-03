@@ -10,7 +10,7 @@
 	    <dataset>
 		<oid>SNMPv2-SMI::mib-2.33.1.4.4.1.4.%2%</oid>
 		<label>Power</label>
-		<color>black</color>
+		<color>darkred</color>
 		<unit>W</unit>
 		<min>0</min>
 		<max>%max%</max>
@@ -18,7 +18,7 @@
 	    <dataset>
 		<oid>SNMPv2-SMI::mib-2.33.1.4.4.1.5.%2%</oid>
 		<label>Load</label>
-		<color>red</color>
+		<color>black</color>
 		<unit>%</unit>
 		<min>0</min>
 		<max>100</max>
